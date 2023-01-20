@@ -14,7 +14,7 @@ function setup() {
 	radio = createRadio();
 	radio.option('1','Pattern 1'); // Circle
 	radio.option('2','Pattern 2'); // Sinusoid
-	radio.option('3','Pattern 3'); // Zigzag
+	radio.option('3','Pattern 3'); // Infinity
 	radio.selected('1')
 	radio.style('width', '85px');
 	radio.position(650,50)
@@ -84,16 +84,22 @@ function draw() {
 			x_s = (k_digit) * 60+offset_s_x[k_seg]
 			y_s = 300-220*cos(1.5*k_angle)+offset_s_y[k_seg]
 		}
-		else if (val == 3){
-			x_s = 150+300*(k_digit%2)+k_digit*k_digit*1.5+offset_s_x[k_seg]
-			y_s = (k_digit) * 45+offset_s_y[k_seg]
+		else if (val == 3){			
+			x_s = abs(-550 + 100*(k_digit-1))+offset_s_x[k_seg]		
+			y_s = 300+200*sin(30+(k_angle-30)*2)
+			if (y_s>300) {
+				y_s = y_s-30+offset_s_y[k_seg]
+			}
+			else {				
+				y_s = y_s+30+offset_s_y[k_seg]
+			}
 		}
 		
 		if ((k_seg+(k_digit-1)*5)<s){
 			drawBall(x_s, y_s, dia_s, 0, pm, 0);
 		}
 		else {
-			drawBall(x_s, y_s, dia_s, 1, pm, 0);
+			//drawBall(x_s, y_s, dia_s, 1, pm, 0); //Looks better without printing the white parts
 		}
 	}
 	
@@ -114,16 +120,22 @@ function draw() {
 			x_m = (j_digit) * 60+offset_m_x[j_seg]
 			y_m = 300-220*cos(1.5*j_angle)+offset_m_y[j_seg]
 		}
-		else if (val == 3){
-			x_m = 150+300*(j_digit%2)+j_digit*j_digit*1.5+offset_m_x[j_seg]
-			y_m = (j_digit) * 45+offset_m_y[j_seg]
+		else if (val == 3){		
+			x_m = abs(-550 + 100*(j_digit-1))+offset_m_x[j_seg]		
+			y_m = 300+200*sin(30+(j_angle-30)*2)
+			if (y_m>300) {
+				y_m = y_m-30+offset_m_y[j_seg]
+			}
+			else {				
+				y_m = y_m+30+offset_m_y[j_seg]
+			}
 		}
 
 		if ((j_seg+(j_digit-1)*5)<m){
 			drawBall(x_m, y_m, dia_m, 0, pm, 1);
 		}
 		else {
-			drawBall(x_m, y_m, dia_m, 1, pm, 1);
+			//drawBall(x_m, y_m, dia_m, 1, pm, 1); //Looks better without printing the white parts
 		}
 	}
 	
@@ -140,15 +152,21 @@ function draw() {
 			y_h = 300-220*cos(1.5*i_angle)
 		}
 		else if (val == 3){
-			x_h = 150+300*(i_digit%2)+i_digit*i_digit*1.5
-			y_h = (i_digit) * 45
-		}
+			x_h = abs(-550 + 100*(i_digit-1))
+			y_h = 300+200*sin(30+(i_angle-30)*2)
+			if (y_h>300) {
+				y_h = y_h-30
+			}
+			else {				
+				y_h = y_h+30
+			}
+		} 
 		
 		if (i<(h%12)){
 			drawBall(x_h, y_h, dia_h, 0, pm, 2);
 		}
 		else {
-			drawBall(x_h, y_h, dia_h, 1, pm, 2);
+			//drawBall(x_h, y_h, dia_h, 1, pm, 2); //Looks better without printing the white parts
 		}
 	}
 }
