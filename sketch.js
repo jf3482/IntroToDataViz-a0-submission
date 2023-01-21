@@ -1,8 +1,13 @@
 /* 
-All are original ideas except the following:
- - Gradient background from https://editor.p5js.org/Jaemi13/sketches/gAS-FB5Sx
- - Bee drawing obtained from https://editor.p5js.org/skgmmt/sketches/r1wu_qDCm
- - Smiley face drawing obtained from https://editor.p5js.org/skgmmt/sketches/r1wu_qDCm
+Proudly produced by Jit Soon Foo (jf3482)...
+
+Welcome to my abstract clock!
+Feel free to play around with the various patterns (related to math if you study closely).
+
+Everything here are original ideas and programmed from scratch, except the following:
+ - Gradient background idea from https://editor.p5js.org/Jaemi13/sketches/gAS-FB5Sx
+ - Initial bee drawing obtained from https://editor.p5js.org/skgmmt/sketches/r1wu_qDCm
+ - Initial smiley face drawing obtained from https://editor.p5js.org/skgmmt/sketches/r1wu_qDCm
 */
 
 //Initialization
@@ -31,7 +36,7 @@ function setup() {
 	radio.option('2','Pattern 2'); // Sinusoid
 	radio.option('3','Pattern 3'); // Infinity
 	radio.selected('1')
-	radio.style('width', '85px');
+	radio.style('width', '87px');
 	radio.position(650,50)
 	textAlign(CENTER);
 	
@@ -54,6 +59,7 @@ function setup() {
 function draw() {
 	//Setting up
 	let val = radio.value();
+	noCursor()
 	
 	//Update status and position of flowers
 	for (var n = 0; n < 12; n++){  		
@@ -97,7 +103,7 @@ function draw() {
 		}
 		curr_s = s2
 	}
-	if (curr_h != h2) {
+	if (curr_h != h2) { // Initial 3 seconds of smiley to welcome you!
 		for (var n = 0; n < 12; n++){  	
 			if (f_stat[n] < 0) {
 				f_stat[n] = 3
@@ -314,6 +320,14 @@ function drawBee(x,y){
 	strokeWeight(5);
 	line(x-10, y-5, x+10, y-5);	
 	line(x-10, y+5, x+10, y+5); 
+	
+	//feelers	
+	strokeWeight(2);
+	fill(0);
+	line(x-8, y-30, x-4, y-20);	
+	line(x+4, y-20, x+8, y-30);
+	ellipse (x-8, y-30, 3, 3);
+	ellipse (x+8, y-30, 3, 3);
 }
 
 function drawSmiley(x,y, diam, pm){
